@@ -1,0 +1,46 @@
+server:
+  port: 2000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: userCmdApi-RegisterUser
+          uri: http://localhost:8092/api/v1/registerUser
+          predicates:
+            - Path=/api/v1/registerUser
+
+        - id: userCmdApi-UpdateUser
+          uri: http://localhost:8092/api/v1/updateUser/**
+          predicates:
+            - Path=/api/v1/updateUser/**
+
+        - id: userCmdApi-RemoveUser
+          uri: http://localhost:8092/api/v1/removeUser/**
+          predicates:
+            - Path=/api/v1/removeUser/**
+
+        - id: userQueryApi
+          uri: http://localhost:8093/api/v1/userLookup/**
+          predicates:
+            - Path=/api/v1/userLookup/**
+
+        - id: courseCmdApi-RegisterUser
+          uri: http://localhost:8094/api/v1/registerCourse
+          predicates:
+             - Path=/api/v1/registerCourse
+
+        - id: courseCmdApi-UpdateCourse
+          uri: http://localhost:8094/api/v1/updateCourse/**
+          predicates:
+            - Path=/api/v1/updateCourse/**
+
+        - id: courseCmdApi-RemoveCourse
+          uri: http://localhost:8094/api/v1/removeCourse/**
+          predicates:
+            - Path=/api/v1/removeCourse/**
+
+        - id: courseQueryApi
+          uri: http://localhost:8095/api/v1/CourseLookup/**
+          predicates:
+            - Path=/api/v1/CourseLookup/**
